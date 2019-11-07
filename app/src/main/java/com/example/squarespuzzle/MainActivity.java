@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        BoardInfo board = new BoardInfo();
+        BoardManipulator boardManipulator = new BoardManipulator(board);
+        boardManipulator.initialize(board,16);
 
-        PuzzleBoard puzzleBoard = new PuzzleBoard();
     }
 }
