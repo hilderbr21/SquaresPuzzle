@@ -1,18 +1,33 @@
+/*
+ * @author Marc Hilderband
+ * @version 11/9/2019
+ *
+ */
+
 package com.example.squarespuzzle;
 
 import android.view.View;
 
 public class BoardManipulator implements View.OnClickListener {
 
-    /*
-    * Constructor
-    *
-     */
 
-    protected BoardInfo[] board;
-    public BoardManipulator(BoardInfo[] boardInfo)
+    private BoardInfo board;
+
+    /* Constructor
+     *
+     *
+     */
+    public BoardManipulator(BoardInfo info, int size)
     {
-        board = boardInfo;
+
+        //initialize board
+        board = info;
+        board.setBoardSize(size);
+        for(int i = 0; i < board.getBoardSize(); i++ )
+        {
+            board.setNumber(i,(i+1));
+        }
+        board.setNumber(board.getBoardSize(),0);
     }
 
     @Override
@@ -20,20 +35,8 @@ public class BoardManipulator implements View.OnClickListener {
     {
         if(v.getId() == R.id.reset)
         {
-
+            board.randomize();
         }
-
     }
 
-    public BoardInfo initialize(BoardInfo board, int size)
-    {
-        int temp = size;
-        for(int i = 0; i < Math.sqrt((double) size); i++ )
-        {
-            for(int j = 0; j < Math.sqrt((double) size); j++)
-            {
-            }
-        }
-        return board;
-    }
 }
