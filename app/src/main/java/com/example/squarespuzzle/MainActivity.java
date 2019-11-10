@@ -19,12 +19,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        BoardInfo board = new BoardInfo();
+        DrawBoard board = findViewById(R.id.theBoard);
         BoardManipulator boardManip = new BoardManipulator(board, 16);
 
         View resetButton = findViewById(R.id.reset);
         resetButton.setOnClickListener(boardManip);
-
 
     }
 }
