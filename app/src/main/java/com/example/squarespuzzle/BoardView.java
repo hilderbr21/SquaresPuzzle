@@ -26,9 +26,10 @@ public class BoardView extends SurfaceView {
     public void onDraw(Canvas canvas)
     {
         setBackgroundColor(Color.WHITE);
-        for(int i = 0; i <= board.getBoardSize(); i++)
+        for(int i = 0; i < board.getBoardSize(); i++)
         {
-            drawSquare(canvas, i, ((int) (i/(Math.sqrt(board.getBoardSize())))), board.getNumber(i));
+            drawSquare(canvas, (int) (i%(Math.sqrt(board.getBoardSize()))), (int) (i/Math.sqrt(board.getBoardSize())), board.getNumber(i));
+            invalidate();
         }
 
 
@@ -36,6 +37,9 @@ public class BoardView extends SurfaceView {
 
     private void drawSquare(Canvas canvas, int x, int y, int value)
     {
+        x = (10+x)*20;
+        y = (10+y)*20;
+
         //canvas.drawRect();
         canvas.drawText(String.valueOf(value), (float) x, (float) y, textColor);
     }

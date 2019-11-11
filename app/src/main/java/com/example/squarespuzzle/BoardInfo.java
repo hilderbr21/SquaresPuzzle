@@ -22,20 +22,22 @@ public class BoardInfo {
      */
     public void swapNums(int oldPosition, int newPosition)
     {
-        if(oldPosition > boardSize || newPosition > boardSize)
+        if(oldPosition >= boardSize || newPosition >= boardSize)
         {
             System.out.println("Error: attempted to swap out of bounds");
         }
         else
         {
             int temp = getNumber(oldPosition);
+            setNumber(oldPosition, getNumber(newPosition));
             setNumber(newPosition, temp);
+
         }
     }
 
     public void resetBoard()
     {
-        for(int i = 0; i < getBoardSize(); i++ )
+        for(int i = 0; i < getBoardSize()-1; i++ )
         {
             setNumber(i,(i+1));
         }
@@ -44,7 +46,11 @@ public class BoardInfo {
 
     public void randomize()
     {
-        //randomize the board
+
+        for(int i = 0; i <100; i++)
+        {
+            swapNums((int) (Math.random()*(boardSize)),(int) (Math.random()*(boardSize)));
+        }
     }
 
     /*

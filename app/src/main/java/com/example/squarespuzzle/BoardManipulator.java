@@ -35,10 +35,17 @@ public class BoardManipulator implements View.OnClickListener {
     @Override
     public void onClick(View v)
     {
-        if(v.getId() == R.id.reset)
+        if(v.getId() ==  R.id.randomize)
         {
             board.randomize();
+            guiBoard.invalidate();
         }
+        if(v.getId() == R.id.reset)
+        {
+            board.resetBoard();
+            guiBoard.invalidate();
+        }
+
     }
 
 }

@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
         BoardManipulator boardManip = new BoardManipulator(boardView);
 
         View resetButton = findViewById(R.id.reset);
+        View randomizeButton = findViewById(R.id.randomize);
         resetButton.setOnClickListener(boardManip);
+        randomizeButton.setOnClickListener(boardManip);
 
     }
 }
