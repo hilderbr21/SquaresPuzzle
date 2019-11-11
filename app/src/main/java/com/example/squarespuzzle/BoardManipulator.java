@@ -1,14 +1,17 @@
 /*
  * @author Marc Hilderband
- * @version 11/10/2019
+ * @version 11/11/2019
  *
+ * When called in MainActivity, initializes the board and BoardView to default winning state
+ * Contains all the listeners in the program.
  */
 
 package com.example.squarespuzzle;
 
+import android.view.MotionEvent;
 import android.view.View;
 
-public class BoardManipulator implements View.OnClickListener {
+public class BoardManipulator implements View.OnClickListener, View.OnTouchListener {
 
 
     private BoardInfo board = new BoardInfo();
@@ -47,6 +50,102 @@ public class BoardManipulator implements View.OnClickListener {
             guiBoard.invalidate();
         }
     }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event)
+    {
+        int valueFromTap = whatWasTapped(event);
+        if(valueFromTap < 0)
+        {
+            return false;
+        }
+
+        int adjacentNum = board.checkLegalMove(valueFromTap);
+        if(adjacentNum >= 0)
+        {
+            board.swapNums(valueFromTap, adjacentNum);
+            return true;
+        }
+
+        return false;
+
+    }
+
+
+    /*
+    * takes coords of tap event and returns number tapped
+    *
+    * @param event
+    *
+    * @returns value of number tapped
+    * @returns -1 if out of bounds
+    * @returns -2 if coordinate is not covered in method
+     */
+    private int whatWasTapped(MotionEvent event)
+    {
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        //Check boundaries
+        if(x < 325 || y <100)
+        {
+            return -1;
+        }
+        if(x > 325*4 || y > 325*4)
+        {
+            return -1;
+        }
+
+        //use simple coordinates to determine square tapped
+        int simpleX;
+        int simpleY;
+        if(x >= 325 && x < 325 + 150)
+        {
+            simpleX = 0;
+        }
+        else if(x >= 325 + 150 && x < 325 + (150*2))
+        {
+            simpleX = 1;
+        }
+        else if(x >= 325 + (150*2) && x < 325 + (150*3))
+        {
+            simpleX = 2;
+        }
+        else if(x >= 325 + (150*3) && x < 325 + (150*4))
+        {
+            simpleX = 3;
+        }
+        else
+        {
+            simpleX = -1;
+        }
+
+
+        if(y >= 100 && x < 100 + 150)
+        {
+            simpleY = 0;
+        }
+        else if(y >= 100 + 150 && x < 100 + (150*2))
+        {
+            simpleY = 1;
+        }
+        else if(y >= 100 + (150*2) && x < 100 + (150*3))
+        {
+            simpleY = 2;
+        }
+        else if(y >= 100 + (150*3) && x < 100 + (150*4))
+        {
+            simpleY = 3;
+        }
+        else
+        {
+            simpleY = -1;
+        }
+
+        return board.getArrayPosition(simpleX,simpleY);
+
+    }
+
 
 
 }

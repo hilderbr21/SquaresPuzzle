@@ -81,14 +81,10 @@ public class BoardView extends SurfaceView {
             canvas.drawText(String.valueOf(value), (float) x, (float) y, textColor);
             canvas.drawRect(square,squarePaint);
         }
-
-
-
-
     }
 
     /*
-    * used for updating board when BoardManipulator class changes data
+    * used for updating boardInfo when BoardManipulator class changes data
     *
     *  @param info new board data
      */

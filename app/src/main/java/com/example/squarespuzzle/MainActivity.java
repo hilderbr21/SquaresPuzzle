@@ -1,6 +1,7 @@
 /*
  * @author Marc Hilderband
- * @version 11/10/2019
+ * @version 11/11/2019
+ *
  *
  */
 package com.example.squarespuzzle;
@@ -33,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
         BoardView boardView = findViewById(R.id.theBoard);
         BoardManipulator boardManip = new BoardManipulator(boardView);
 
+        //setup buttons and respective listeners
         View resetButton = findViewById(R.id.reset);
         View randomizeButton = findViewById(R.id.randomize);
         resetButton.setOnClickListener(boardManip);
         randomizeButton.setOnClickListener(boardManip);
+
+        View touch = findViewById(R.id.theBoard);
+        touch.setOnTouchListener(boardManip);
 
     }
 }
