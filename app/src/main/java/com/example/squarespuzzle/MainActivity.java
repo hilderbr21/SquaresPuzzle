@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
          Resource: https://stackoverflow.com/questions/31794136/textview-cannot-be-cast-to-edittext
          Solution: Had to change SurfaceView to BoardView in the XML
          */
-        BoardView boardView = boardView = findViewById(R.id.theBoard);
+        BoardView boardView = findViewById(R.id.theBoard);
         BoardManipulator boardManip = new BoardManipulator(boardView);
 
         View resetButton = findViewById(R.id.reset);

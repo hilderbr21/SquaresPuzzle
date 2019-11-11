@@ -17,8 +17,6 @@ public class BoardManipulator implements View.OnClickListener {
 
     /*
      * Constructor, creates default board
-     *
-     *
      */
     public BoardManipulator(BoardView drawBoard)
     {
@@ -32,6 +30,9 @@ public class BoardManipulator implements View.OnClickListener {
         guiBoard.invalidate();
     }
 
+    /*
+    *
+     */
     @Override
     public void onClick(View v)
     {
@@ -45,7 +46,7 @@ public class BoardManipulator implements View.OnClickListener {
             board.resetBoard();
             guiBoard.invalidate();
         }
-
     }
+
 
 }
