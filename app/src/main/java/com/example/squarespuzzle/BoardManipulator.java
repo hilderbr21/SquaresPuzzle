@@ -1,6 +1,6 @@
 /*
  * @author Marc Hilderband
- * @version 11/9/2019
+ * @version 11/10/2019
  *
  */
 
@@ -12,24 +12,24 @@ public class BoardManipulator implements View.OnClickListener {
 
 
     private BoardInfo board = new BoardInfo();
-    private DrawBoard = new DrawBoard();
+    private BoardView guiBoard;
 
-    /* Constructor
+
+    /*
+     * Constructor, creates default board
      *
      *
      */
-    public BoardManipulator(DrawBoard boardGui, BoardInfo theBoard, int size)
+    public BoardManipulator(BoardView drawBoard)
     {
 
         //initialize board gui and board array
-        guiBoard = boardGui;
-        board = theBoard;
-        board.setBoardSize(size);
-        for(int i = 0; i < board.getBoardSize(); i++ )
-        {
-            board.setNumber(i,(i+1));
-        }
-        board.setNumber(board.getBoardSize(),0);
+        board.setBoardSize(16);
+        board.resetBoard();
+        guiBoard = drawBoard;
+
+        guiBoard.shareBoardInfo(board);
+        guiBoard.invalidate();
     }
 
     @Override
