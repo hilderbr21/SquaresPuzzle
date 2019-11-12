@@ -2,7 +2,7 @@
  * @author Marc Hilderband
  * @version 11/11/2019
  *
- *
+ * MaiinActivity
  */
 package com.example.squarespuzzle;
 
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         resetButton.setOnClickListener(boardManip);
         randomizeButton.setOnClickListener(boardManip);
 
+        //set touch listener on the canvas
         View touch = findViewById(R.id.theBoard);
         touch.setOnTouchListener(boardManip);
 

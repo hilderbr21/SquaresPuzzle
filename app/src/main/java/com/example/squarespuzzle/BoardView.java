@@ -1,3 +1,10 @@
+/*
+ *@author Marc Hilderbrand
+ * Version 11/11/2019
+ *
+ * Contains methods to draw the board
+ */
+
 package com.example.squarespuzzle;
 
 import android.content.Context;
@@ -26,7 +33,15 @@ public class BoardView extends SurfaceView {
     @Override
     public void onDraw(Canvas canvas)
     {
-        setBackgroundColor(Color.WHITE);
+        if(board.getWinStatus() == true)
+        {
+            setBackgroundColor(Color.GREEN);
+        }
+        else
+        {
+            setBackgroundColor(Color.WHITE);
+        }
+
         for(int i = 0; i < board.getBoardSize(); i++)
         {
             drawSquare(canvas, board.getNumber(i), i);
@@ -34,8 +49,8 @@ public class BoardView extends SurfaceView {
         }
     }
 
-    /*
-     * draws squares filled with numbers based on location in array,
+    /* drawSquare
+     * draws squares filled with numbers based on location in array
      *
      * @param canvas   the canvas to be drawn to
      * @param value    the value held in the square
@@ -45,11 +60,9 @@ public class BoardView extends SurfaceView {
     private void drawSquare(Canvas canvas, int value, int position)
     {
 
+        //
         int x = 325+ 150*(position%((int)(Math.sqrt(board.getBoardSize()))));
         int y = 100+ 150*(position/((int)(Math.sqrt(board.getBoardSize()))));
-
-
-        //canvas.drawRect();
 
         /**
          External Citation

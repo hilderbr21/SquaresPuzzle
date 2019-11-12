@@ -4,6 +4,7 @@
  *
  * Contains an integer array containing ints for the game.
  * This class also contains methods to be called to manipulate the array.
+ * Holds win status as a boolean
  */
 
 package com.example.squarespuzzle;
@@ -12,8 +13,9 @@ public class BoardInfo {
 
     private int[] boardNums = new int[25];
     private int boardSize = 16;
+    private boolean win = false;
 
-    /*
+    /*swapNums
     * swaps two numbers at specified positions
     *
     * @param oldPosition
@@ -35,7 +37,7 @@ public class BoardInfo {
         }
     }
 
-    /*
+    /* resetBoard
     * resets array to numerical order thus putting the board to its winning state
      */
     public void resetBoard()
@@ -47,7 +49,7 @@ public class BoardInfo {
         setNumber(getBoardSize()-1,0);
     }
 
-    /*
+    /* randomize
      * swaps random numbers 100 times
      */
     public void randomize()
@@ -59,7 +61,7 @@ public class BoardInfo {
         }
     }
 
-    /*
+    /* getNumber
     * checks boundaries and returns number at specific position
     *
     * @param position   Position to be checked
@@ -78,7 +80,7 @@ public class BoardInfo {
         }
     }
 
-    /*
+    /* setNumber
     * Writes a new number at array position
     *
     * @param position   The position on the array of the number
@@ -96,7 +98,7 @@ public class BoardInfo {
         }
     }
 
-    /*
+    /*getArrayPosition
     * returns position on array given coordinates
     *
     * @param x  x coordinate
@@ -118,7 +120,7 @@ public class BoardInfo {
         return (position-1);
     }
 
-    /*
+    /* checkForSwap
      * checks for 0 next to or 4 before/after parameter number
      *
      * @param position position on array to be checked
@@ -173,7 +175,44 @@ public class BoardInfo {
         return -1;
     }
 
-    /*
+    /* checkWin
+     * changes status to win if winning conditions are met
+     */
+    public void checkWin()
+    {
+        win = true;
+        for(int i = 0; i < getBoardSize()-1; i++ )
+        {
+            if(boardNums[i] == i+1 && win)
+            {
+                win = true;
+            }
+            else
+            {
+                win = false;
+            }
+
+        }
+
+    }
+
+    /* getWinStatus
+     * returns status of win
+     */
+    public boolean getWinStatus()
+    {
+        return win;
+    }
+
+    /* setWinFalse
+     * manually set win to false
+     */
+    public void setWinFalse()
+    {
+        win = false;
+    }
+
+    /* setBoardSize & getBoardSize
     * getter and setter methods to get the size of the board to be used in calculations.
     *
     * A separate variable for board size is used to to allow for different size boards for future versions

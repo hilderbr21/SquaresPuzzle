@@ -46,6 +46,7 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
         }
         if(v.getId() == R.id.reset)
         {
+            board.setWinFalse();
             board.resetBoard();
             guiBoard.invalidate();
         }
@@ -60,11 +61,15 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
             return false;
         }
 
+
+        guiBoard.invalidate();
         int adjacentNum = board.checkForSwap(valueFromTap);
         if(adjacentNum >= 0)
         {
             board.swapNums(valueFromTap, adjacentNum);
+            board.checkWin();
             guiBoard.invalidate();
+
             return true;
         }
 
@@ -84,6 +89,7 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
      */
     private int whatWasTapped(MotionEvent event)
     {
+
         int x = (int) event.getX();
         int y = (int) event.getY();
 
@@ -143,6 +149,7 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
             simpleY = -1;
         }
 
+        //call getArrayPosition in board and return output value
         return board.getArrayPosition(simpleX,simpleY);
 
     }
