@@ -10,7 +10,7 @@ package com.example.squarespuzzle;
 
 public class BoardInfo {
 
-    private int[] boardNums = new int[16];
+    private int[] boardNums = new int[25];
     private int boardSize = 16;
 
     /*
@@ -111,10 +111,11 @@ public class BoardInfo {
         {
             return -2;
         }
-        int yCoord = (y%(int)Math.sqrt(getBoardSize()))+1;
-        int xCoord = (x%(int)Math.sqrt(getBoardSize()));
+        int yCoord = (y%(int)Math.sqrt(getBoardSize()));
+        int xCoord = (x%(int)Math.sqrt(getBoardSize()))+1;
 
-        return (xCoord*yCoord);
+        int position = (yCoord*4) + xCoord;
+        return (position-1);
     }
 
     /*
@@ -122,12 +123,54 @@ public class BoardInfo {
      *
      * @param position position on array to be checked
      *
-     * @return true move is legal
-     * @return false move is not legal
+     * @return int of position that could be swapped
+     * @return -1 there is not move to be made
      */
-    public int checkLegalMove(int position)
+    public int checkForSwap(int position)
     {
-        
+        //check down
+        if(position + 4 < getBoardSize())
+        {
+            if (boardNums[position+4] == 0)
+            {
+                return (position+4);
+            }
+        }
+
+        //check right
+        if(position + 1 < getBoardSize())
+        {
+            if(boardNums[position+1] == 0)
+            {
+                if((position+1)%(Math.sqrt(getBoardSize())) != 0)
+                {
+                    return (position+1);
+                }
+
+            }
+        }
+
+        //check up
+        if(position - 4 >= 0)
+        {
+            if(boardNums[position - 4] == 0)
+            {
+                return (position-4);
+            }
+        }
+
+        //check left
+        if(position - 1 >= 0)
+        {
+            if(boardNums[position - 1] == 0)
+            {
+                if((position-1)%(Math.sqrt(getBoardSize())) != Math.sqrt(getBoardSize())-1)
+                {
+                    return (position - 1);
+                }
+            }
+        }
+        return -1;
     }
 
     /*

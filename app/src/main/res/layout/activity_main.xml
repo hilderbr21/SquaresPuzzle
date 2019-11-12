@@ -15,7 +15,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Squares Puzzle" />
+            android:text="Tap adjacent square to move." />
 
         <Space
             android:layout_width="wrap_content"

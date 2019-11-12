@@ -60,10 +60,11 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
             return false;
         }
 
-        int adjacentNum = board.checkLegalMove(valueFromTap);
+        int adjacentNum = board.checkForSwap(valueFromTap);
         if(adjacentNum >= 0)
         {
             board.swapNums(valueFromTap, adjacentNum);
+            guiBoard.invalidate();
             return true;
         }
 
@@ -87,7 +88,7 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
         int y = (int) event.getY();
 
         //Check boundaries
-        if(x < 325 || y <100)
+        if(x < 325-50 || y <100-70)
         {
             return -1;
         }
@@ -99,19 +100,19 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
         //use simple coordinates to determine square tapped
         int simpleX;
         int simpleY;
-        if(x >= 325 && x < 325 + 150)
+        if(x >= 275-50 && x < 325 + 150-50)
         {
             simpleX = 0;
         }
-        else if(x >= 325 + 150 && x < 325 + (150*2))
+        else if(x >= 275 + 150-50 && x < 325 + (150*2)-50)
         {
             simpleX = 1;
         }
-        else if(x >= 325 + (150*2) && x < 325 + (150*3))
+        else if(x >= 325 + (150*2)-50 && x < 325 + (150*3)-50)
         {
             simpleX = 2;
         }
-        else if(x >= 325 + (150*3) && x < 325 + (150*4))
+        else if(x >= 325 + (150*3)-50 && x < 325 + (150*4)-50)
         {
             simpleX = 3;
         }
@@ -121,19 +122,19 @@ public class BoardManipulator implements View.OnClickListener, View.OnTouchListe
         }
 
 
-        if(y >= 100 && x < 100 + 150)
+        if(y >= 100-70 && y < 100 + 50)
         {
             simpleY = 0;
         }
-        else if(y >= 100 + 150 && x < 100 + (150*2))
+        else if(y >= (100 + 150)-70 && y < 100 + (150*2)-50-50)
         {
             simpleY = 1;
         }
-        else if(y >= 100 + (150*2) && x < 100 + (150*3))
+        else if(y >= 100 + (150*2)-70 && y < 100 + (150*3)-50-50)
         {
             simpleY = 2;
         }
-        else if(y >= 100 + (150*3) && x < 100 + (150*4))
+        else if(y >= 100 + (150*3)-70 && y < 100 + (150*4)-50-50)
         {
             simpleY = 3;
         }
